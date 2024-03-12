@@ -39,6 +39,11 @@
 #include "string.h"
 #include "spn.h"
 
+#pragma comment(lib, "rpcrt4.lib")
+#pragma comment(lib, "Ntdsapi.lib")
+#pragma comment(lib, "Netapi32.lib")
+#pragma comment(lib, "Secur32.lib")
+
 #define PURPOSE \
 "This Microsoft RPC Version sample program demonstrates\n\
 the use of the [string] attribute. For more information\n\
@@ -114,7 +119,7 @@ void __cdecl main(int argc, char * argv[])
     if (status) {
         exit(status);
     }
-	
+
     // User did not specify spn, construct one.
     if (pszSpn == NULL) {
         MakeSpn(&pszSpn);
@@ -129,9 +134,9 @@ void __cdecl main(int argc, char * argv[])
     printf_s("RpcServerRegisterAuthInfo returned 0x%x\n", status);
     if (status) {
         exit(status);
-    }	
+    }
 
-    status = RpcServerRegisterIfEx(hello_ServerIfHandle, NULL, NULL, 0, RPC_C_LISTEN_MAX_CALLS_DEFAULT, NULL );
+    status = RpcServerRegisterIfEx(hello_v1_0_s_ifspec, NULL, NULL, 0, RPC_C_LISTEN_MAX_CALLS_DEFAULT, NULL );
 
     printf_s("RpcServerRegisterIfEx returned 0x%x\n", status);   
 

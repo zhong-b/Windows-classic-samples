@@ -12,7 +12,7 @@ void MakeSpn(unsigned char **pszSpn)
     DWORD status = ERROR_SUCCESS;
     ULONG ulSpn = 1;
     unsigned char ** arrSpn = NULL;
-    HANDLE hDS;
+    HANDLE hDS = NULL;
     PDOMAIN_CONTROLLER_INFO pDomainControllerInfo;
     char lpCompDN[128];
     ULONG ulCompDNSize = sizeof(lpCompDN);
