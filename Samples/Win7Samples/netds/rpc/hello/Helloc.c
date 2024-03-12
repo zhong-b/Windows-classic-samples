@@ -122,7 +122,7 @@ void __cdecl main(int argc, char **argv)
     if (status) {
         exit(status);
     }
-
+#if 0
     // User did not specify spn, construct one.
     if (pszSpn == NULL) {
         MakeSpn(&pszSpn);
@@ -146,15 +146,15 @@ void __cdecl main(int argc, char **argv)
     printf_s("RpcBindingSetAuthInfoEx returned 0x%x\n", status);
     if (status) {
         exit(status);
-    }	
-	
+    }
+#endif	
     printf_s("Calling the remote procedure 'HelloProc'\n");
     printf_s("Print the string '%s' on the server\n", pszString);
 
     RpcTryExcept {
 		HelloProc(hello_IfHandle,pszString);  // make call with user message
         printf_s("Calling the remote procedure 'Shutdown'\n");
-        Shutdown(hello_IfHandle);  // shut down the server side
+        // Shutdown(hello_IfHandle);  // shut down the server side
     }
     RpcExcept(( ( (RpcExceptionCode() != STATUS_ACCESS_VIOLATION) &&
                    (RpcExceptionCode() != STATUS_DATATYPE_MISALIGNMENT) &&

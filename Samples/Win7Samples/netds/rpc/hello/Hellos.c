@@ -119,7 +119,7 @@ void __cdecl main(int argc, char * argv[])
     if (status) {
         exit(status);
     }
-
+#if 0
     // User did not specify spn, construct one.
     if (pszSpn == NULL) {
         MakeSpn(&pszSpn);
@@ -135,7 +135,7 @@ void __cdecl main(int argc, char * argv[])
     if (status) {
         exit(status);
     }
-
+#endif
     status = RpcServerRegisterIfEx(hello_v1_0_s_ifspec, NULL, NULL, 0, RPC_C_LISTEN_MAX_CALLS_DEFAULT, NULL );
 
     printf_s("RpcServerRegisterIfEx returned 0x%x\n", status);   
